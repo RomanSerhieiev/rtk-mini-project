@@ -1,0 +1,16 @@
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 20px;
+}
+
+.main a {
+    text-decoration: none;
+    color: white;
+}
+
+.main > div {
+    flex-grow: 1;
+}

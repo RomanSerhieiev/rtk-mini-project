@@ -1,0 +1,13 @@
+.main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main h1 {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

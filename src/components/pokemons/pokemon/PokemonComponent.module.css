@@ -1,0 +1,33 @@
+.main {
+    display: flex;
+    flex-direction: column;
+}
+
+.main h3 {
+    text-align: center;
+}
+
+.main > div {
+    display: flex;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.main > div > img {
+    flex-grow: 1;
+}
+
+.main > div > div {
+    flex-grow: 1;
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.main > div > div > div {
+    flex-grow: 1;
+}
+
+.h1 {
+    text-align: center;
+}
