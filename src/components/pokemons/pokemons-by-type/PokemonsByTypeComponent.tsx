@@ -12,9 +12,7 @@ const PokemonsByTypeComponent: FC = () => {
     const pageParam = params.get('page');
     const page = pageParam ? +pageParam : 1;
 
-    const pokemonsByType = pokemons?.slice(page * 20 - 20, page * 20)
-
-    console.log(pokemons);
+    const pokemonsByType = pokemons?.slice(page * 20 - 20, page * 20);
 
     return (
         <div className={css.main}>

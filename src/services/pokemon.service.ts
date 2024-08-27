@@ -31,7 +31,7 @@ export const pokemonService = {
         const {data} = await apiService.get<NamedAPIResourceList>(url.pokemon.allAbilities(offset));
         return data;
     },
-    getAbilityById: async (id: number): Promise<Ability> => {
+    getAbilityById: async (id: string): Promise<Ability> => {
         const {data} = await apiService.get<Ability>(url.pokemon.abilityById(id));
         return data;
     },

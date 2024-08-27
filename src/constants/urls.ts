@@ -161,7 +161,7 @@ const url = {
         all: (offset: number): string => `${endpoint.pokemon.base}/?offset=${offset}`,
         byId: (id: string): string => `${endpoint.pokemon.base}/${id}`,
         allAbilities: (offset: number): string => `${endpoint.pokemon.ability}/?offset=${offset}`,
-        abilityById: (id: number): string => `${endpoint.pokemon.ability}/${id}`,
+        abilityById: (id: string): string => `${endpoint.pokemon.ability}/${id}`,
         allCharacteristics: (offset: number): string => `${endpoint.pokemon.characteristic}/?offset=${offset}`,
         characteristicById: (id: number): string => `${endpoint.pokemon.characteristic}/${id}`,
         allEggGroups: (offset: number): string => `${endpoint.pokemon.eggGroup}/?offset=${offset}`,

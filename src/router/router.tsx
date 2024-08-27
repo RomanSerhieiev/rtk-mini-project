@@ -101,6 +101,8 @@ import PokemonLocationAreasPage from '../pages/pokemons/pokemon-location-areas/P
 import PokemonLocationAreaPage from '../pages/pokemons/pokemon-location-area/PokemonLocationAreaPage';
 import FavoritesPage from '../pages/pokemons/favorites/FavoritesPage';
 import PokemonsByTypePage from '../pages/pokemons/pokemons-by-type/PokemonsByTypePage';
+import NothingPage from '../pages/nothing/NothingPage';
+import PokemonsByAbilityPage from '../pages/pokemons/pokemons-by-ability/PokemonsByAbilityPage';
 
 const routs: RouteObject[] = [
     {
@@ -121,8 +123,16 @@ const routs: RouteObject[] = [
                 element: <FavoritesPage />
             },
             {
+                path: 'nothing',
+                element: <NothingPage />
+            },
+            {
                 path: 'pokemon-by-type',
                 element: <PokemonsByTypePage />
+            },
+            {
+                path: 'pokemon-by-ability',
+                element: <PokemonsByAbilityPage />
             },
             {
                 path: 'pokemon-by-type/:id',

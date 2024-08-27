@@ -29,6 +29,8 @@ import { NamedAPIResource } from '../../models/common/NamedAPIResource.model';
 interface PokemonSlice {
     pokemonsByType: NamedAPIResource[] | null,
     pokemonsByTypePages: number,
+    pokemonsByAbility: NamedAPIResource[] | null,
+    pokemonsByAbilityPages: number,
     pokemons: NamedAPIResourceList | null,
     pokemonsPages: number,
     favoritePokemons: FavoritePokemon[],
@@ -84,6 +86,8 @@ interface PokemonSlice {
 const initialState: PokemonSlice = {
     pokemonsByType: [],
     pokemonsByTypePages: 1,
+    pokemonsByAbility: [],
+    pokemonsByAbilityPages: 1,
     pokemons: null,
     pokemonsPages: 1,
     favoritePokemons: retrieveOrSaveLocalStorageData<FavoritePokemon[]>(EKey.favorites, []),
@@ -174,7 +178,7 @@ const getAllAbilities = createAsyncThunk(
 
 const getAbilityById = createAsyncThunk(
     'pokemonSlice/getAbilityById',
-    async (id: number, thunkAPI) => {
+    async (id: string, thunkAPI) => {
         try {
             return thunkAPI.fulfillWithValue(await pokemonService.getAbilityById(id));
         } catch (e) {
@@ -533,12 +537,20 @@ export const pokemonSlice = createSlice({
                 : 1;
             saveLocalStorageData(EKey.favorites, state.favoritePokemons);
         },
-        pokemons: (state, action: PayloadAction<NamedAPIResource[] | null>) => {
+        pokemonsByType: (state, action: PayloadAction<NamedAPIResource[] | null>) => {
             state.pokemonsByType = action.payload
             state.pokemonsByTypePages = state.pokemonsByType
                 ? state.pokemonsByType.length % 20 === 0
                     ? state.pokemonsByType.length / 20
                     : Math.floor(state.pokemonsByType.length / 20) + 1
+                : 1;
+        },
+        pokemonsByAbility: (state, action: PayloadAction<NamedAPIResource[] | null>) => {
+            state.pokemonsByAbility = action.payload
+            state.pokemonsByAbilityPages = state.pokemonsByAbility
+                ? state.pokemonsByAbility.length % 20 === 0
+                    ? state.pokemonsByAbility.length / 20
+                    : Math.floor(state.pokemonsByAbility.length / 20) + 1
                 : 1;
         },
     },
@@ -559,6 +571,9 @@ export const pokemonSlice = createSlice({
         })
         .addCase(getAbilityById.fulfilled, (state, action) => {
             state.ability = action.payload;
+        })
+        .addCase(getAbilityById.rejected, (state, action) => {
+            state.ability = null;
         })
         .addCase(getAllCharacteristics.fulfilled, (state, action) => {
             state.characteristics = action.payload;
@@ -654,6 +669,9 @@ export const pokemonSlice = createSlice({
         })
         .addCase(getTypeById.fulfilled, (state, action) => {
             state.type = action.payload;
+        })
+        .addCase(getTypeById.rejected, (state, action) => {
+            state.type = null;
         })
         .addMatcher(isRejected(
             getAll,
