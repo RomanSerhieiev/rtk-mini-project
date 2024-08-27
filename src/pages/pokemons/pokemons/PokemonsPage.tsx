@@ -7,13 +7,12 @@ import { pokemonActions } from '../../../store/slices/pokemon.slice';
 import PaginationComponent from '../../../components/pagination/PaginationComponent';
 import PokemonsComponent from '../../../components/pokemons/pokemons/PokemonsComponent';
 import { useForm } from 'react-hook-form';
-import { Pokemon } from '../../../models/pokemon/Pokemon.model';
 import { Type } from '../../../models/pokemon/Type.model';
 import { Ability } from '../../../models/pokemon/Ability.model';
+import { Button, Form, Label } from 'reactstrap';
 
 const PokemonsPage: FC = () => {
     const pages = useAppSelector(store => store.pokemonSlice.pokemonsPages);
-    const pokemonType = useAppSelector(store => store.pokemonSlice.type);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const [params] = useSearchParams({
@@ -78,18 +77,18 @@ const PokemonsPage: FC = () => {
         <div className={css.main}>
             <div className={css.container}>
                 <h1>Pokemons Page</h1>
-                <form onSubmit={handleSubmit(searchByName)}>
-                    <label>Search by name: <input type="text" {...register('name')} /></label>
-                    <button>Search</button>
-                </form>
-                <form onSubmit={handleSubmit(searchBytype)}>
-                    <label>Search by type: <input type="text" {...register('type')} /></label>
-                    <button>Search</button>
-                </form>
-                <form onSubmit={handleSubmit(searchByAbility)}>
-                    <label>Search by ability: <input type="text" {...register('ability')} /></label>
-                    <button>Search</button>
-                </form>
+                <Form className={css.form} onSubmit={handleSubmit(searchByName)}>
+                    <Label><input type="text" {...register('name')} placeholder={'By name'} /></Label>
+                    <Button>Search</Button>
+                </Form>
+                <Form className={css.form} onSubmit={handleSubmit(searchBytype)}>
+                    <Label><input type="text" {...register('type')} placeholder={'By type'} /></Label>
+                    <Button>Search</Button>
+                </Form>
+                <Form className={css.form} onSubmit={handleSubmit(searchByAbility)}>
+                    <Label><input type="text" {...register('ability')} placeholder={'By ability'} /></Label>
+                    <Button>Search</Button>
+                </Form>
                 <PokemonsComponent />
             </div>
             <PaginationComponent pages={pages} />
